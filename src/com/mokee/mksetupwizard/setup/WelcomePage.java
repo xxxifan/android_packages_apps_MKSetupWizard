@@ -43,14 +43,6 @@ public class WelcomePage extends Fragment {
         String originText = " " + mTextView.getText().toString();
         mTextView.setText("Hi! " + model + originText);
 
-//        mButton.setOnClickListener(new OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                ((MainActivity) getActivity()).goNextPage();
-//            }
-//        });
-
         final ArrayAdapter<LocaleInfo> adapter = LocalePicker.constructAdapter(
                 getActivity(), R.layout.locale_picker_item, R.id.locale);
         mSpinner.setAdapter(adapter);
