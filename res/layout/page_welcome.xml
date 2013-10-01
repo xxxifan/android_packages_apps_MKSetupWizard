@@ -36,7 +36,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="20dp" />
 
-        <Button
+        <com.mokee.mksetupwizard.widget.NavButton
             android:id="@+id/next"
             style="@style/NavigationButton"
             android:layout_gravity="right"

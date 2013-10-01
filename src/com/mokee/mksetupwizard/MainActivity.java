@@ -2,9 +2,11 @@
 package com.mokee.mksetupwizard;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -14,8 +16,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.LinearInterpolator;
 import android.view.animation.Interpolator;
+import android.view.animation.LinearInterpolator;
 
 import com.mokee.mksetupwizard.setup.InputMethodPage;
 import com.mokee.mksetupwizard.setup.WelcomePage;
@@ -26,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends Activity {
-    
+
     private static final boolean isDebuging = true;
 
     private static final String TAG = "mokee_setupwizard";
@@ -34,8 +36,6 @@ public class MainActivity extends Activity {
 
     private Interpolator sInterpolator;
 
-    private Context mContext;
-    
     private ViewPager mViewPager;
     private TabPagerListener mPagerListener;
     private List<Fragment> mFragmentList;
@@ -45,8 +45,7 @@ public class MainActivity extends Activity {
         checkInit();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
-        mContext = this;
+        
         sInterpolator = new LinearInterpolator();
         mViewPager = (ViewPager) findViewById(R.id.pager);
         getPages();
@@ -83,21 +82,18 @@ public class MainActivity extends Activity {
             Log.e(TAG, "Already setup,shutdown");
             MainActivity.this.finish();
         }
-
     }
-
+    
     private void getPages() {
         mFragmentList = new ArrayList<Fragment>();
-        mFragmentList.add(new WelcomePage(mContext));
-        mFragmentList.add(new InputMethodPage(mContext));
+        mFragmentList.add(new WelcomePage());
+        mFragmentList.add(new InputMethodPage());
     }
 
     public void goNextPage() {
         int current = mViewPager.getCurrentItem();
-        if (current != mFragmentList.size()) {
+        if (current != (mFragmentList.size() - 1)) {
             mViewPager.setCurrentItem(++current);
-        } else {
-            // finish setup
         }
     }
 

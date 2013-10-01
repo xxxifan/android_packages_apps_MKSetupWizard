@@ -11,5 +11,6 @@
     
     <string name="page_im_title">Input Method Set Up</string>
     <string name="page_im_summary">Select input method that you prefered.</string>
+    <string name="page_im_none">No InputMethod installed!</string>
     
 </resources>

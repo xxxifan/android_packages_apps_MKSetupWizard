@@ -2,7 +2,6 @@
 package com.mokee.mksetupwizard.setup;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,10 +26,6 @@ public class WelcomePage extends Fragment {
 
     private TextView mTextView;
     private Spinner mSpinner;
-    private Button mButton;
-    
-    public WelcomePage(Context mContext) {
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,7 +33,6 @@ public class WelcomePage extends Fragment {
         View view = inflater.inflate(R.layout.page_welcome, null);
         mTextView = (TextView) view.findViewById(R.id.welcome_summary);
         mSpinner = (Spinner) view.findViewById(R.id.local_spinner);
-        mButton = (Button) view.findViewById(R.id.next);
 
         initView();
         return view;
@@ -48,14 +42,14 @@ public class WelcomePage extends Fragment {
         String model = Build.MODEL;
         String originText = " " + mTextView.getText().toString();
         mTextView.setText("Hi! " + model + originText);
-        
-        mButton.setOnClickListener(new OnClickListener() {
-            
-            @Override
-            public void onClick(View v) {
-                ((MainActivity)getActivity()).goNextPage();
-            }
-        });
+
+//        mButton.setOnClickListener(new OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                ((MainActivity) getActivity()).goNextPage();
+//            }
+//        });
 
         final ArrayAdapter<LocaleInfo> adapter = LocalePicker.constructAdapter(
                 getActivity(), R.layout.locale_picker_item, R.id.locale);
@@ -79,7 +73,7 @@ public class WelcomePage extends Fragment {
         // Select current locale by default
         Locale current = Locale.getDefault();
         int count = adapter.getCount();
-        for (int i=0; i<count; i++) {
+        for (int i = 0; i < count; i++) {
             Locale locale = adapter.getItem(i).getLocale();
             if (current.equals(locale)) {
                 mSpinner.setSelection(i);
