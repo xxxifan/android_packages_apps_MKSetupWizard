@@ -9,24 +9,31 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.STATUS_BAR" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.CHANGE_COMPONENT_ENABLED_STATE" />
 
     <uses-sdk
         android:minSdkVersion="15"
         android:targetSdkVersion="18" />
 
     <application
-        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Holo.Light.NoActionBar"
+        android:sharedUserId="android.uid.system"
         android:uiOptions="splitActionBarWhenNarrow" >
         <activity
             android:name="com.mokee.mksetupwizard.MainActivity"
-            android:label="@string/app_name" >
-            <intent-filter>
+            android:excludeFromRecents="true"
+            android:immersive="true"
+            android:label="@string/app_name"
+            android:launchMode="singleTop" >
+            <intent-filter android:priority="1000" >
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.DEVICE_INITIALIZATION_WIZARD" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.HOME" />
             </intent-filter>
         </activity>
     </application>

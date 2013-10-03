@@ -4,9 +4,16 @@ package com.mokee.mksetupwizard;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.StatusBarManager;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -32,8 +39,10 @@ public class MainActivity extends Activity {
 
     private static final String TAG = "mokee_setupwizard";
     private static final String BOOT_KEY = "boot_key";
+    private static final String GOOGLE_SETUPWIZARD_PACKAGE = "com.google.android.setupwizard";
 
     private Interpolator sInterpolator;
+    private StatusBarManager mStatusBarManager;
 
     private ViewPager mViewPager;
     private TabPagerListener mPagerListener;
@@ -44,6 +53,9 @@ public class MainActivity extends Activity {
         checkInit();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        mStatusBarManager = (StatusBarManager) getSystemService(Context.STATUS_BAR_SERVICE);
+        disableStatusBar();
 
         sInterpolator = new LinearInterpolator();
         mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -101,7 +113,7 @@ public class MainActivity extends Activity {
         if (next != mFragmentList.size()) {
             mViewPager.setCurrentItem(next);
         } else {
-            this.finish();
+            finishSetup();
         }
     }
 
@@ -110,6 +122,47 @@ public class MainActivity extends Activity {
         if (previous >= 0) {
             mViewPager.setCurrentItem(previous);
         }
+    }
+
+    public void disableStatusBar() {
+        mStatusBarManager.disable(StatusBarManager.DISABLE_EXPAND
+                | StatusBarManager.DISABLE_NOTIFICATION_ALERTS
+                | StatusBarManager.DISABLE_NOTIFICATION_TICKER | StatusBarManager.DISABLE_RECENT
+                | StatusBarManager.DISABLE_HOME
+                | StatusBarManager.DISABLE_SEARCH);
+    }
+
+    public void enableStatusBar() {
+        mStatusBarManager.disable(StatusBarManager.DISABLE_NONE);
+    }
+
+    private void finishSetup() {
+        Settings.Global.putInt(getContentResolver(), Settings.Global.DEVICE_PROVISIONED, 1);
+        Settings.Secure.putInt(getContentResolver(), Settings.Secure.USER_SETUP_COMPLETE, 1);
+        enableStatusBar();
+        Intent intent = new Intent("android.intent.action.MAIN");
+        intent.addCategory("android.intent.category.HOME");
+        disableSetupWizards(intent);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | intent.getFlags());
+        startActivity(intent);
+        finish();
+    }
+
+    private void disableSetupWizards(Intent intent) {
+        final PackageManager pm = getPackageManager();
+        final List<ResolveInfo> resolveInfos = pm.queryIntentActivities(intent,
+                PackageManager.MATCH_DEFAULT_ONLY);
+        for (ResolveInfo info : resolveInfos) {
+            if (GOOGLE_SETUPWIZARD_PACKAGE.equals(info.activityInfo.packageName)) {
+                final ComponentName componentName = new ComponentName(
+                        info.activityInfo.packageName, info.activityInfo.name);
+                pm.setComponentEnabledSetting(componentName,
+                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                        PackageManager.DONT_KILL_APP);
+            }
+        }
+        pm.setComponentEnabledSetting(getComponentName(),
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
     }
 
     @Override
