@@ -2,11 +2,8 @@
 package com.mokee.mksetupwizard;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -19,7 +16,9 @@ import android.view.WindowManager;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 
+import com.mokee.mksetupwizard.setup.FinishPage;
 import com.mokee.mksetupwizard.setup.InputMethodPage;
+import com.mokee.mksetupwizard.setup.NetworkPage;
 import com.mokee.mksetupwizard.setup.WelcomePage;
 import com.mokee.mksetupwizard.widget.FixedSpeedScroller;
 
@@ -45,7 +44,7 @@ public class MainActivity extends Activity {
         checkInit();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        
+
         sInterpolator = new LinearInterpolator();
         mViewPager = (ViewPager) findViewById(R.id.pager);
         getPages();
@@ -83,24 +82,33 @@ public class MainActivity extends Activity {
             MainActivity.this.finish();
         }
     }
-    
+
+    public boolean isFirstPage() {
+        return mViewPager.getCurrentItem() == 0 ? true : false;
+
+    }
+
     private void getPages() {
         mFragmentList = new ArrayList<Fragment>();
         mFragmentList.add(new WelcomePage());
+        mFragmentList.add(new NetworkPage());
         mFragmentList.add(new InputMethodPage());
+        mFragmentList.add(new FinishPage());
     }
 
     public void goNextPage() {
-        int current = mViewPager.getCurrentItem();
-        if (current != (mFragmentList.size() - 1)) {
-            mViewPager.setCurrentItem(++current);
+        int next = mViewPager.getCurrentItem() + 1;
+        if (next != mFragmentList.size()) {
+            mViewPager.setCurrentItem(next);
+        } else {
+            this.finish();
         }
     }
 
     public void goPreviousPage() {
-        int current = mViewPager.getCurrentItem();
-        if (current > 0) {
-            mViewPager.setCurrentItem(--current);
+        int previous = mViewPager.getCurrentItem() - 1;
+        if (previous >= 0) {
+            mViewPager.setCurrentItem(previous);
         }
     }
 
@@ -121,7 +129,7 @@ public class MainActivity extends Activity {
 
         @Override
         public void onPageSelected(int position) {
-            mViewPager.setCurrentItem(position);
+            goNextPage();
         }
     }
 

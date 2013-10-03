@@ -26,23 +26,23 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="40dp"
-            android:text="@string/page_im_summary" />
+            android:text="@string/page_im_summary"
+            android:textAppearance="@style/Content" />
 
         <RadioGroup
             android:id="@+id/input_method_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="8dp" />
-        
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="20dp" />
+
         <com.mokee.mksetupwizard.widget.NavButton
-            android:id="@+id/next"
             style="@style/NavigationButton"
-            android:layout_gravity="right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/transparent"
+            android:layout_gravity="right"
             android:layout_marginTop="80dp"
+            android:background="@color/transparent"
             android:text="@string/page_next" />
     </LinearLayout>
 
