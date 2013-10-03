@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">魔趣设置向导</string>
+    <string name="our_name">Mokee Open Source Project</string>
+    
+    <string name="done">完成</string>
+    
+    <string name="page_next">下一步></string>
+    
+    <string name="page_welcome_title">欢迎</string>
+    <string name="page_welcome_summary">用户\n\n要开始设置向导，选择你的语言并继续</string>
+    
+    <string name="page_im_title">输入法设置</string>
+    <string name="page_im_summary">选择你想要的输入法</string>
+    <string name="page_im_none">未安装输入法!</string>
+    
+    <string name="page_network_title">网络设置</string>
+    <string name="page_network_summary">设置你的网络</string>
+    <string name="page_network_pref_wifi_toggle">启用 WiFi</string>
+    <string name="page_network_pref_data_toggle">启用数据网络</string>
+    <string name="page_network_pref_gps_toggle">启用 GPS</string>
+    <string name="page_network_pref_datetime_preset">日期与时间将会使用启用的网络进行自动同步</string>
+    
+    <string name="page_finish_title">设置完成</string>
+    <string name="page_finish_summary">恭喜！设置向导已经完成，尽情使用吧！</string>
+</resources>
