@@ -3,26 +3,20 @@
 
     <string name="app_name">MKSetupWizard</string>
     <string name="our_name">Mokee Open Source Project</string>
-    
     <string name="done">Done</string>
-    
     <string name="page_next">Next></string>
-    
     <string name="page_welcome_title">Welcome To Mokee Open Source</string>
     <string name="page_welcome_summary">user\n\nTo get started setting up your device, select your language and continue</string>
-    
     <string name="page_im_title">Input Method Set Up</string>
     <string name="page_im_summary">Select input method that you prefered</string>
     <string name="page_im_none">No InputMethod installed!</string>
-    
     <string name="page_network_title">Network Settings</string>
     <string name="page_network_summary">Setup your network</string>
     <string name="page_network_pref_wifi_toggle">Enable Wi-fi</string>
     <string name="page_network_pref_data_toggle">Enable Data Network</string>
     <string name="page_network_pref_gps_toggle">Enable GPS</string>
     <string name="page_network_pref_datetime_preset">Date and Time will automatic sync with enabled network</string>
-    
     <string name="page_finish_title">Setup Completed</string>
     <string name="page_finish_summary">Congratulations!Setup has been completed,now you can enjoy!</string>
-    
+
 </resources>

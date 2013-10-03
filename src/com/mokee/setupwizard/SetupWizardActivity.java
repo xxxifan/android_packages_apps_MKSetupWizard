@@ -1,5 +1,26 @@
+/*
+ * Copyright (C) 2013 The MoKee OpenSource Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-package com.mokee.mksetupwizard;
+package com.mokee.setupwizard;
+
+import com.mokee.setupwizard.setup.FinishPage;
+import com.mokee.setupwizard.setup.InputMethodPage;
+import com.mokee.setupwizard.setup.NetworkPage;
+import com.mokee.setupwizard.setup.WelcomePage;
+import com.mokee.setupwizard.widget.FixedSpeedScroller;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -23,17 +44,11 @@ import android.view.WindowManager;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 
-import com.mokee.mksetupwizard.setup.FinishPage;
-import com.mokee.mksetupwizard.setup.InputMethodPage;
-import com.mokee.mksetupwizard.setup.NetworkPage;
-import com.mokee.mksetupwizard.setup.WelcomePage;
-import com.mokee.mksetupwizard.widget.FixedSpeedScroller;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends Activity {
+public class SetupWizardActivity extends Activity {
 
     private static final boolean isDebuging = true;
 
@@ -87,11 +102,11 @@ public class MainActivity extends Activity {
         if (isDebuging) {
             prefs.edit().putInt(BOOT_KEY, 1).commit();
             int flag = WindowManager.LayoutParams.FLAG_FULLSCREEN;
-            Window window = MainActivity.this.getWindow();
+            Window window = SetupWizardActivity.this.getWindow();
             window.setFlags(flag, flag);
         } else { // Already run,shutdown
             Log.e(TAG, "Already setup,shutdown");
-            MainActivity.this.finish();
+            SetupWizardActivity.this.finish();
         }
     }
 

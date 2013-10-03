@@ -51,7 +51,7 @@
             android:layout_marginLeft="8dp"
             android:text="@string/page_network_pref_gps_toggle" />
 
-        <com.mokee.mksetupwizard.widget.NavButton
+        <com.mokee.setupwizard.widget.NavButton
             style="@style/NavigationButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

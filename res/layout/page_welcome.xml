@@ -36,7 +36,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="20dp" />
 
-        <com.mokee.mksetupwizard.widget.NavButton
+        <com.mokee.setupwizard.widget.NavButton
             style="@style/NavigationButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,7 +44,6 @@
             android:layout_marginTop="80dp"
             android:background="@color/transparent"
             android:text="@string/page_next" />
-
     </LinearLayout>
 
 </RelativeLayout>

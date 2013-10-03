@@ -1,10 +1,16 @@
+# Copyright (C) 2013 The MoKee OpenSource Project
 #
-# Copyright (C) 2012 ParanoidAndroid Project
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-# Licensed under the GNU GPLv2 license
+#      http://www.apache.org/licenses/LICENSE-2.0
 #
-# The text of the license can be found in the LICENSE file
-# or at https://www.gnu.org/licenses/gpl-2.0.txt
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 #
 
 LOCAL_PATH:= $(call my-dir)
@@ -14,7 +20,7 @@ LOCAL_SRC_FILES += $(call all-java-files-under, src)
 
 LOCAL_MODULE_TAGS := optional
 
-LOCAL_PACKAGE_NAME := MKSetupWizard
+LOCAL_PACKAGE_NAME := MoKeeSetupWizard
 LOCAL_CERTIFICATE := platform
 
 LOCAL_STATIC_JAVA_LIBRARIES := \

@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2013 The MoKee OpenSource Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mokee.mksetupwizard" >
+    package="com.mokee.setupwizard" >
 
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
@@ -14,17 +30,16 @@
     <uses-permission android:name="android.permission.CHANGE_COMPONENT_ENABLED_STATE" />
 
     <uses-sdk
-        android:minSdkVersion="15"
+        android:minSdkVersion="17"
         android:targetSdkVersion="18" />
 
     <application
-        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Holo.Light.NoActionBar"
         android:sharedUserId="android.uid.system"
+        android:theme="@android:style/Theme.Holo.Light.NoActionBar"
         android:uiOptions="splitActionBarWhenNarrow" >
         <activity
-            android:name="com.mokee.mksetupwizard.MainActivity"
+            android:name="com.mokee.setupwizard.SetupWizardActivity"
             android:excludeFromRecents="true"
             android:immersive="true"
             android:label="@string/app_name"
