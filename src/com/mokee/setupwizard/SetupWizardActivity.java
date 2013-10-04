@@ -50,10 +50,7 @@ import java.util.List;
 
 public class SetupWizardActivity extends Activity {
 
-    private static final boolean isDebuging = true;
-
     private static final String TAG = "mokee_setupwizard";
-    private static final String BOOT_KEY = "boot_key";
     private static final String GOOGLE_SETUPWIZARD_PACKAGE = "com.google.android.setupwizard";
 
     private Interpolator sInterpolator;
@@ -96,18 +93,9 @@ public class SetupWizardActivity extends Activity {
     }
 
     private void checkInit() {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        int version = prefs.getInt(BOOT_KEY, 0);
-        // if (version == 0) { // First init,record it.
-        if (isDebuging) {
-            prefs.edit().putInt(BOOT_KEY, 1).commit();
-            int flag = WindowManager.LayoutParams.FLAG_FULLSCREEN;
-            Window window = SetupWizardActivity.this.getWindow();
-            window.setFlags(flag, flag);
-        } else { // Already run,shutdown
-            Log.e(TAG, "Already setup,shutdown");
-            SetupWizardActivity.this.finish();
-        }
+        int flag = WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        Window window = SetupWizardActivity.this.getWindow();
+        window.setFlags(flag, flag);
     }
 
     public boolean isFirstPage() {
