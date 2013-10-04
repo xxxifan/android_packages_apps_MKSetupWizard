@@ -16,13 +16,12 @@
 
 package com.mokee.setupwizard.widget;
 
-import com.mokee.setupwizard.SetupWizardActivity;
-
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.mokee.setupwizard.SetupWizardActivity;
 
 public class NavButton extends Button {
 
@@ -35,9 +34,7 @@ public class NavButton extends Button {
 
             @Override
             public void onClick(View v) {
-                Log.e("xifan", "onclick");
                 ((SetupWizardActivity) mContext).goNextPage();
-
             }
         });
     }

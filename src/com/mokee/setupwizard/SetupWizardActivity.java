@@ -98,11 +98,6 @@ public class SetupWizardActivity extends Activity {
         window.setFlags(flag, flag);
     }
 
-    public boolean isFirstPage() {
-        return mViewPager.getCurrentItem() == 0 ? true : false;
-
-    }
-
     private void getPages() {
         mFragmentList = new ArrayList<Fragment>();
         mFragmentList.add(new WelcomePage());
@@ -111,6 +106,7 @@ public class SetupWizardActivity extends Activity {
         mFragmentList.add(new FinishPage());
     }
 
+    // Global functions
     public void goNextPage() {
         int next = mViewPager.getCurrentItem() + 1;
         if (next != mFragmentList.size()) {
@@ -127,7 +123,11 @@ public class SetupWizardActivity extends Activity {
         }
     }
 
-    public void disableStatusBar() {
+    public boolean isFirstPage() {
+        return mViewPager.getCurrentItem() == 0 ? true : false;
+    }
+
+    private void disableStatusBar() {
         mStatusBarManager.disable(StatusBarManager.DISABLE_EXPAND
                 | StatusBarManager.DISABLE_NOTIFICATION_ALERTS
                 | StatusBarManager.DISABLE_NOTIFICATION_TICKER | StatusBarManager.DISABLE_RECENT
@@ -135,7 +135,7 @@ public class SetupWizardActivity extends Activity {
                 | StatusBarManager.DISABLE_SEARCH);
     }
 
-    public void enableStatusBar() {
+    private void enableStatusBar() {
         mStatusBarManager.disable(StatusBarManager.DISABLE_NONE);
     }
 

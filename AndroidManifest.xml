@@ -29,10 +29,6 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.CHANGE_COMPONENT_ENABLED_STATE" />
 
-    <uses-sdk
-        android:minSdkVersion="17"
-        android:targetSdkVersion="18" />
-
     <application
         android:label="@string/app_name"
         android:sharedUserId="android.uid.system"
@@ -40,10 +36,12 @@
         android:uiOptions="splitActionBarWhenNarrow" >
         <activity
             android:name="com.mokee.setupwizard.SetupWizardActivity"
+            android:configChanges="locale|orientation"
             android:excludeFromRecents="true"
             android:immersive="true"
             android:label="@string/app_name"
-            android:launchMode="singleTop" >
+            android:launchMode="singleTop"
+            android:screenOrientation="sensor" >
             <intent-filter android:priority="1000" >
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.DEVICE_INITIALIZATION_WIZARD" />
