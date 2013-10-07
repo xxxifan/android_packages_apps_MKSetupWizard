@@ -17,14 +17,12 @@
 package com.mokee.setupwizard.setup;
 
 import com.mokee.setupwizard.R;
-import com.mokee.setupwizard.SetupWizardActivity;
 import com.mokee.setupwizard.widget.InputMethodItem;
 
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +49,7 @@ public class InputMethodPage extends Fragment {
     private RadioGroup mImGroup;
 
     private String mEnabledIM;
+    private String mDefaultIM;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,6 +69,8 @@ public class InputMethodPage extends Fragment {
 
         mEnabledIM = Settings.Secure.getString(mContext.getContentResolver(),
                 Settings.Secure.ENABLED_INPUT_METHODS);
+        mDefaultIM = Settings.Secure.getString(mContext.getContentResolver(),
+                Settings.Secure.DEFAULT_INPUT_METHOD);
 
         int count = (infoList == null ? 0 : infoList.size());
 
@@ -92,6 +93,7 @@ public class InputMethodPage extends Fragment {
             RadioButton button = new RadioButton(mContext);
             button.setText(mImList.get(i).getImLabel());
             button.setTag(mImList.get(i).getImPackage());
+            button.setChecked(mImList.get(i).getImPackage().equals(mDefaultIM));
             button.setOnCheckedChangeListener(checkedListener);
             mImGroup.addView(button);
         }
@@ -110,16 +112,10 @@ public class InputMethodPage extends Fragment {
                 Settings.Secure.putString(mContext.getContentResolver(),
                         Settings.Secure.ENABLED_INPUT_METHODS, mEnabledIM
                                 + ":" + defaultTag);
-                ((SetupWizardActivity) getActivity()).goNextPage();
+                //((SetupWizardActivity) getActivity()).goNextPage();
             }
 
         }
 
-    }
-
-    @Override
-    public void onResume() {
-        Log.e("xifan", "resume");
-        super.onResume();
     }
 }

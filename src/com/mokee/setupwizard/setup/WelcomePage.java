@@ -22,7 +22,6 @@ import com.mokee.setupwizard.R;
 import com.mokee.setupwizard.SetupWizardActivity;
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -105,5 +104,4 @@ public class WelcomePage extends Fragment {
             }
         });
     }
-
 }

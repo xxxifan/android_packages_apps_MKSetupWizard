@@ -5,7 +5,7 @@
     <string name="our_name">Mokee Open Source Project</string>
     <string name="done">完成</string>
     <string name="page_next">下一步></string>
-    <string name="page_welcome_title">欢迎</string>
+    <string name="page_welcome_title">欢迎使用MoKee OpenSource</string>
     <string name="page_welcome_summary">用户\n\n要开始设置向导，选择你的语言并继续</string>
     <string name="page_im_title">输入法设置</string>
     <string name="page_im_summary">选择你想要的输入法</string>
